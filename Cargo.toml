@@ -1,0 +1,9 @@
+[package]
+name = "tmod"
+version = "0.1.0"
+authors = ["Julian Laubstein <contact@julianlaubstein.de>"]
+
+[dependencies]
+melon = "^0.14"
+minifb = "^0.11"
+rand = "^0.6"
