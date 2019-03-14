@@ -1,19 +1,16 @@
 extern crate melon;
-extern crate rand;
 extern crate minifb;
+extern crate rand;
 
 mod system;
 
+use melon::{Debugger, Instruction, IntegerType, Program, ProgramBuilder, VM};
 use system::MatrixSystem;
-use melon::{VM, Program, ProgramBuilder, Instruction};
 
 fn main() {
-    let mut matrix = MatrixSystem::new();
+    let rom_data = include_bytes!("../stock/target/stock.rom");
 
-    let program = ProgramBuilder::new("org.bakervm.tmod".into()).instructions(vec![
-        Instruction::SysCall(1),
-        Instruction::Jmp(false, 1),
-        ]).gen();
+    let program = Program::from_slice(rom_data).expect("unable to load rom");
 
-    VM::default().exec(&program, &mut matrix).unwrap();
+    VM::default().exec(&program, &mut MatrixSystem::new()).unwrap_or_else(|e| panic!("Error: {}", e));
 }

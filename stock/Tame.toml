@@ -1,0 +1,9 @@
+# This is a configuration file template
+
+[program]
+name = "stock"
+system_id = "org.bakervm.tmod"
+
+[signals]
+flushfb = 1
+write_line = 2
